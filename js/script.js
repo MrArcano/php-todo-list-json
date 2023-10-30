@@ -17,6 +17,7 @@ createApp({
 
       const formData = new FormData();
       formData.append("todo", this.newTask);
+      formData.append("done", false);
 
       axios.post(this.myUrl,formData)
         .then((res)=> {

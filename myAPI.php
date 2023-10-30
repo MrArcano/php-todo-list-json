@@ -11,7 +11,7 @@ if(isset($_POST["todo"])){
   // add new task
   $decodedJSON[] = array(
     "todo" => $_POST["todo"],
-    "done" => false
+    "done" => filter_var($_POST["done"],FILTER_VALIDATE_BOOLEAN) 
   );
   
 }
