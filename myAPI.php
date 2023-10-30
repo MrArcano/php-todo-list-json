@@ -15,8 +15,6 @@ $encodeJSON = json_encode($decodedJSON);
 header("Content-Type: application/json");
 echo $encodeJSON;
 
-
 // Stampo sul file esterno JSON il mio array modificato
 file_put_contents("data.json",$encodeJSON);
-
 ?>
