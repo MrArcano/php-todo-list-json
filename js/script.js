@@ -4,7 +4,7 @@ createApp({
   data() {
     return {
       myUrl: "myAPI.php",
-      myTask: [],
+      myTasks: [],
     }
   },
   methods: {
@@ -16,7 +16,7 @@ createApp({
     axios.get(this.myUrl)
      .then((res) => {
       console.log(res.data);
-      this.myTask = res.data;
+      this.myTasks = res.data;
      })
      .catch((err)=>{
       console.log(err);

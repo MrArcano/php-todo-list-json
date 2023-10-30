@@ -22,11 +22,9 @@
     <h1 class="text-center text-bg-dark py-3">PHP ToDo List JSON</h1>
     <div class="container">
       <ul class="list-group">
-        <li class="list-group-item">An item</li>
-        <li class="list-group-item">A second item</li>
-        <li class="list-group-item">A third item</li>
-        <li class="list-group-item">A fourth item</li>
-        <li class="list-group-item">And a fifth one</li>
+        <li v-for="item in myTasks" class="list-group-item">
+          <span :class="{'text-decoration-line-through' : item.done}">{{ item.todo }} </span>
+        </li>
       </ul>
     </div>
   </div>
