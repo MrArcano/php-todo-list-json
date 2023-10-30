@@ -6,7 +6,29 @@ $TasksJSON = file_get_contents("data.json");
 $decodedJSON = json_decode($TasksJSON, true);
 
 // Eseguo modifiche varie ed eventuali 
+// ADD TASK
+if(isset($_POST["todo"])){
+  // add new task
+  $decodedJSON[] = array(
+    "todo" => $_POST["todo"],
+    "done" => false
+  );
+  
+}
 
+// TOGGLE done
+if(isset($_POST["toggle"])){
+  $indexToggle = $_POST["toggle"];
+  $decodedJSON[$indexToggle]["done"] = !$decodedJSON[$indexToggle]["done"];
+}
+
+// DEL TASK
+if(isset($_POST["delTask"])){
+  $indexDel = $_POST["delTask"];
+  if($decodedJSON[$indexDel]["done"]){
+    array_splice($decodedJSON,$indexDel,1);
+  }
+}
 
 // Ricodifico l'array in un file JSON
 $encodeJSON = json_encode($decodedJSON);
