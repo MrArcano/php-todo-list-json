@@ -6,6 +6,8 @@ createApp({
       myUrl: "myAPI.php",
       myTasks: [],
       newTask: "",
+      errFlag: false,
+      errMsg: "Non puoi eliminare un task non completato!",
     }
   },
   methods: {
@@ -18,22 +20,30 @@ createApp({
 
       axios.post(this.myUrl,formData)
         .then((res)=> {
-          console.log(res.data);
           this.myTasks = res.data;
         })
         .catch((err)=>{
           console.log(err);
         })
+
+      this.newTask = "";
     },
 
     delTask(index){
       console.log("DEL: ",index);
+      this.selectIndexDel = index;
+
+      if(!this.myTasks[this.selectIndexDel].done){
+        this.errFlag = true;
+      }else{
+        this.errFlag = false;
+      }
+
       const formData = new FormData();
       formData.append("delTask", index);
 
       axios.post(this.myUrl,formData)
       .then((res)=> {
-        console.log(res.data);
         this.myTasks = res.data;
       })
       .catch((err)=>{
@@ -62,7 +72,6 @@ createApp({
     // GET myAPI
     axios.get(this.myUrl)
      .then((res) => {
-      console.log(res.data);
       this.myTasks = res.data;
      })
      .catch((err)=>{

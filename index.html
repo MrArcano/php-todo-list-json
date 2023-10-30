@@ -20,6 +20,8 @@
 <body>
   <div id="app">
     <h1 class="text-center text-bg-dark py-3">PHP ToDo List JSON</h1>
+
+    <h3 v-if="errFlag" class="text-bg-danger text-center">{{ errMsg }}</h3>
     <div class="container">
 
       <div class="input-group my-3">
