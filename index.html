@@ -21,9 +21,16 @@
   <div id="app">
     <h1 class="text-center text-bg-dark py-3">PHP ToDo List JSON</h1>
     <div class="container">
+
+      <div class="input-group my-3">
+        <input @keyup.enter="addTask" v-model="newTask" type="text" class="form-control" placeholder="New Task">
+        <button @click="addTask" class="btn btn-dark " type="button" id="button-addon2">Add +</button>
+      </div>
+
       <ul class="list-group">
-        <li v-for="item in myTasks" class="list-group-item">
+        <li @click="toggleDone(index)" v-for="(item,index) in myTasks" class="list-group-item d-flex justify-content-between">
           <span :class="{'text-decoration-line-through' : item.done}">{{ item.todo }} </span>
+          <button @click.stop="delTask(index)" class="btn btn-danger">Del</button>
         </li>
       </ul>
     </div>

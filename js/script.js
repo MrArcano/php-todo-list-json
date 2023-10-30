@@ -5,9 +5,22 @@ createApp({
     return {
       myUrl: "myAPI.php",
       myTasks: [],
+      newTask: "",
     }
   },
   methods: {
+
+    addTask(){
+      console.log("ADD", this.newTask);
+    },
+
+    delTask(index){
+      console.log("DEL: ",index);
+    },
+
+    toggleDone(index){
+      console.log("TOGGLE: ",index);
+    }
     
   },
   mounted() {
@@ -22,4 +35,4 @@ createApp({
       console.log(err);
      })
   },
-}).mount("#app")
+}).mount("#app");
