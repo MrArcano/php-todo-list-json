@@ -7,13 +7,12 @@ $decodedJSON = json_decode($TasksJSON, true);
 
 // Eseguo modifiche varie ed eventuali 
 // ADD TASK
-if(isset($_POST["todo"])){
+if(isset($_POST["todo"]) && isset($_POST["done"])){
   // add new task
   $decodedJSON[] = array(
     "todo" => $_POST["todo"],
-    "done" => filter_var($_POST["done"],FILTER_VALIDATE_BOOLEAN) 
+    "done" => filter_var($_POST["done"],FILTER_VALIDATE_BOOLEAN)
   );
-  
 }
 
 // TOGGLE done
