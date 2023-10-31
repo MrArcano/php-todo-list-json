@@ -47,7 +47,9 @@
             :disabled="!arrayIsEdit[index]"
             @keyup.enter="editTask(index)"
             @click.stop="console.log('input')">
-            <div v-if="!arrayIsEdit[index]" class="bg-danger opacity-25 position-absolute w-75 h-100 top-0 start-0"></div>
+
+            <!-- fix input text disabled no click event -->
+            <div v-if="!arrayIsEdit[index]" class="opacity-25 position-absolute w-75 h-100 top-0 start-0"></div>
           <div>
            <button @click.stop="editTask(index)" class="btn btn-info me-2">Edit</button>
            <button @click.stop="delTask(index)" class="btn btn-danger">Del</button> 

@@ -50,6 +50,8 @@ createApp({
         axios.post(this.myUrl,formData)
         .then((res)=> {
           this.myTasks = res.data;
+          // quando elimino un file dalla mia lista task
+          // devo ricrearmi il mio array flag edit
           this.arrayEdit();
         })
         .catch((err)=>{
@@ -61,6 +63,7 @@ createApp({
 
     // Toggle complete task
     toggleDone(index){
+      // il toogle funziona solo se non sto già editando all'index selected
       if(!this.arrayIsEdit[index]){
         console.log("TOGGLE: ",index);
         const formData = new FormData();
@@ -78,6 +81,7 @@ createApp({
 
     // ArrayIsEdit
     arrayEdit(){
+      // mi creo un array di flag per abilitare o disabilitare l'input text
       this.arrayIsEdit.length = 0;
       for (let i = 0; i < this.myTasks.length; i++) {
         this.arrayIsEdit[i]= false;
@@ -109,6 +113,7 @@ createApp({
     axios.get(this.myUrl)
      .then((res) => {
       this.myTasks = res.data;
+      // all'avvio mi creo un array flag per l'edit
       this.arrayEdit();
      })
      .catch((err)=>{
