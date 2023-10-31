@@ -61,17 +61,19 @@ createApp({
 
     // Toggle complete task
     toggleDone(index){
-      console.log("TOGGLE: ",index);
-      const formData = new FormData();
-      formData.append("toggle", index);
-
-      axios.post(this.myUrl,formData)
-      .then((res)=> {
-        this.myTasks = res.data;
-      })
-      .catch((err)=>{
-        console.log(err);
-      })
+      if(!this.arrayIsEdit[index]){
+        console.log("TOGGLE: ",index);
+        const formData = new FormData();
+        formData.append("toggle", index);
+  
+        axios.post(this.myUrl,formData)
+        .then((res)=> {
+          this.myTasks = res.data;
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+      }
     },
 
     // ArrayIsEdit

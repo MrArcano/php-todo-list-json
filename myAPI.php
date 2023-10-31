@@ -33,8 +33,10 @@ if(isset($_POST["delTask"])){
 
 // EDIT TASK
 if(isset($_POST["editIndex"]) && isset($_POST["todoEdit"]) ){
-  $indexEdit = $_POST["editIndex"];
-  $decodedJSON[$indexEdit]["todo"] = $_POST["todoEdit"];
+  if(!empty($_POST["todoEdit"])){
+    $indexEdit = $_POST["editIndex"];
+    $decodedJSON[$indexEdit]["todo"] = $_POST["todoEdit"];
+  }
 }
 
 // Ricodifico l'array in un file JSON

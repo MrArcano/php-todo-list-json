@@ -1,0 +1,4 @@
+.list-group input:disabled{
+  border: none;
+  background-color: white;
+}
