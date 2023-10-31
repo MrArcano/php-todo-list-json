@@ -9,10 +9,12 @@ $decodedJSON = json_decode($TasksJSON, true);
 // ADD TASK
 if(isset($_POST["todo"]) && isset($_POST["done"])){
   // add new task
-  $decodedJSON[] = array(
-    "todo" => $_POST["todo"],
-    "done" => filter_var($_POST["done"],FILTER_VALIDATE_BOOLEAN)
-  );
+  if(!empty($_POST["todo"])){
+    $decodedJSON[] = array(
+      "todo" => $_POST["todo"],
+      "done" => filter_var($_POST["done"],FILTER_VALIDATE_BOOLEAN)
+    );
+  }
 }
 
 // TOGGLE done
@@ -27,6 +29,12 @@ if(isset($_POST["delTask"])){
   if($decodedJSON[$indexDel]["done"]){
     array_splice($decodedJSON,$indexDel,1);
   }
+}
+
+// EDIT TASK
+if(isset($_POST["editIndex"]) && isset($_POST["todoEdit"]) ){
+  $indexEdit = $_POST["editIndex"];
+  $decodedJSON[$indexEdit]["todo"] = $_POST["todoEdit"];
 }
 
 // Ricodifico l'array in un file JSON
