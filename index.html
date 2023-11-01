@@ -43,7 +43,7 @@
             type="text"
             v-model="item.todo"
             name=""
-            :class="{'text-decoration-line-through' : item.done}"
+            :class="{'text-decoration-line-through' : item.done && !arrayIsEdit[index]}"
             :disabled="!arrayIsEdit[index]"
             @keyup.enter="editTask(index)"
             @click.stop="console.log('input')">
