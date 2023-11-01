@@ -23,7 +23,7 @@ if(isset($_POST["toggle"])){
   $decodedJSON[$indexToggle]["done"] = !$decodedJSON[$indexToggle]["done"];
 }
 
-// DEL TASK
+// DELETE TASK
 if(isset($_POST["delTask"])){
   $indexDel = $_POST["delTask"];
   if($decodedJSON[$indexDel]["done"]){

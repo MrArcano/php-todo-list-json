@@ -6,6 +6,9 @@
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!-- Axios -->
   <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
 
@@ -27,7 +30,7 @@
     <div class="container">
 
       <div class="input-group my-3">
-        <input @keyup.enter="addTask" v-model="newTask" type="text" class="form-control" placeholder="New Task">
+        <input @keyup.enter="addTask" v-model.trim="newTask" type="text" class="form-control" placeholder="New Task">
         <button @click="addTask" class="btn btn-dark " type="button" id="button-addon2">Add +</button>
       </div>
 
@@ -41,7 +44,7 @@
 
           <input
             type="text"
-            v-model="item.todo"
+            v-model.trim="item.todo"
             name=""
             :class="{'text-decoration-line-through' : item.done && !arrayIsEdit[index]}"
             :disabled="!arrayIsEdit[index]"
@@ -51,8 +54,8 @@
             <!-- fix input text disabled no click event -->
             <div v-if="!arrayIsEdit[index]" class="opacity-25 position-absolute w-75 h-100 top-0 start-0"></div>
           <div>
-           <button @click.stop="editTask(index)" class="btn btn-info me-2">Edit</button>
-           <button @click.stop="delTask(index)" class="btn btn-danger">Del</button> 
+           <button @click.stop="editTask(index)" class="btn btn-primary me-2"><i class="fa-solid fa-pencil"></i></button>
+           <button @click.stop="delTask(index)" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></button> 
           </div>
         </li>
       </ul>

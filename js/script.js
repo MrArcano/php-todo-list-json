@@ -16,21 +16,22 @@ createApp({
 
     // ADD new Task
     addTask(){
-      console.log("ADD", this.newTask);
-
-      const formData = new FormData();
-      formData.append("todo", this.newTask);
-      formData.append("done", false);
-
-      axios.post(this.myUrl,formData)
-        .then((res)=> {
-          this.myTasks = res.data;
-          this.arrayEdit();
-        })
-        .catch((err)=>{
-          console.log(err);
-        })
-
+      if(this.newTask){
+        console.log("ADD", this.newTask);
+  
+        const formData = new FormData();
+        formData.append("todo", this.newTask);
+        formData.append("done", false);
+  
+        axios.post(this.myUrl,formData)
+          .then((res)=> {
+            this.myTasks = res.data;
+            this.arrayEdit();
+          })
+          .catch((err)=>{
+            console.log(err);
+          })
+      }
       this.newTask = "";
     },
 
@@ -41,6 +42,9 @@ createApp({
 
       if(!this.myTasks[this.selectIndexDel].done){
         this.errFlag = true;
+        setTimeout(() => {
+          this.errFlag = false;
+        }, 2000);
       }else{
         this.errFlag = false;
         
@@ -50,7 +54,7 @@ createApp({
         axios.post(this.myUrl,formData)
         .then((res)=> {
           this.myTasks = res.data;
-          // quando elimino un file dalla mia lista task
+          // quando elimino un task dalla mia lista
           // devo ricrearmi il mio array flag edit
           this.arrayEdit();
         })
@@ -90,20 +94,24 @@ createApp({
     },
 
     editTask(index){
+      // Switch flag
       this.arrayIsEdit[index] = !this.arrayIsEdit[index]
 
-      console.log("EDIT: ",index);
-      const formData = new FormData();
-      formData.append("editIndex", index);
-      formData.append("todoEdit", this.myTasks[index].todo);
-
-      axios.post(this.myUrl,formData)
-      .then((res)=> {
-        this.myTasks = res.data;
-      })
-      .catch((err)=>{
-        console.log(err);
-      })
+      // Se il flag all'index è false, vuol dire che ho finito di editare
+      if(!this.arrayIsEdit[index]){
+        console.log("EDIT: ",index);
+        const formData = new FormData();
+        formData.append("editIndex", index);
+        formData.append("todoEdit", this.myTasks[index].todo);
+  
+        axios.post(this.myUrl,formData)
+        .then((res)=> {
+          this.myTasks = res.data;
+        })
+        .catch((err)=>{
+          console.log(err);
+        })
+      }
     }
     
   },
