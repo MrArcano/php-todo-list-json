@@ -2,3 +2,11 @@
   border: none;
   background-color: white;
 }
+
+#app > h1{
+  height: 72px;
+}
+
+.bg-dark-subtle{
+  height: calc(100vh - 72px) ;
+}
